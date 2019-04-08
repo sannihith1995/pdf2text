@@ -1,0 +1,26 @@
+package main
+
+import (
+	"fmt"
+	"os"
+
+	rsc "rsc.io/pdf"
+)
+
+func main() {
+	f, err := rsc.Open("invoice.pdf")
+	if err != nil {
+		fmt.Println(err)
+	}
+	read := f.Page(1)
+
+	str := read.Content()
+	text := str.Text
+	file, err := os.Create("out.txt")
+	defer file.Close()
+	for _, t := range text {
+		fmt.Fprint(file, t)
+	}
+
+	return
+}
