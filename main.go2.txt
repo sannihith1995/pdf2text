@@ -22,5 +22,4 @@ func main() {
 		fmt.Fprint(file, t)
 	}
 
-	return
 }
